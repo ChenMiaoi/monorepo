@@ -142,6 +142,7 @@ config("proto_file_cpp_config") {
 ohos_source_set("assembly_proto_static") {
   cflags = [ "-Wno-error=zero-length-array" ]
 
+  # Cause Proto -> hilog:libhilog
   deps = [
     ":arkcompiler_generate_proto",
     "$ark_third_party_root/protobuf:protobuf_lite_static",

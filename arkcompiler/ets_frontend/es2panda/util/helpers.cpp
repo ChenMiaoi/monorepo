@@ -630,10 +630,11 @@ SignedNumberLiteral Helpers::GetSignedNumberLiteral(const ir::Expression *expr)
 
 void Helpers::OptimizeProgram(panda::pandasm::Program *prog,  const std::string &inputFile)
 {
+    // The possibility of handling variables that may not be used
     std::map<std::string, size_t> stat;
-    std::map<std::string, size_t> *statp = &stat;
+    [[maybe_unused]] std::map<std::string, size_t> *statp = &stat;
     panda::pandasm::AsmEmitter::PandaFileToPandaAsmMaps maps{};
-    panda::pandasm::AsmEmitter::PandaFileToPandaAsmMaps *mapsp = &maps;
+    [[maybe_unused]] panda::pandasm::AsmEmitter::PandaFileToPandaAsmMaps *mapsp = &maps;
 
 #ifdef PANDA_WITH_BYTECODE_OPTIMIZER
     const uint32_t COMPONENT_MASK = panda::Logger::Component::ASSEMBLER |

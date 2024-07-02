@@ -12,6 +12,9 @@
 # limitations under the License.
 
 import("//developtools/profiler/build/config.gni")
+
+# To Append the `enable_hilog` identifier
+import("//arkcompiler/runtime_core/ark_config.gni")
 import("$build_root/ark.gni")
 
 THIRDPARTY_PROTOBUF_SUBSYS_NAME = "thirdparty"
@@ -60,9 +63,10 @@ ohos_shared_library("protobuf_lite") {
     "$protobuf_src_root/google/protobuf/**/*.inc",
     "$protobuf_src_root",
   ]
+  # Cause the hiloh:libhilog
   if (!is_mingw) {
     if (current_toolchain != host_toolchain) {
-      external_deps = [ "hilog:libhilog" ]
+      # external_deps = [ "hilog:libhilog" ]
     }
   } else {
     defines = [ "_FILE_OFFSET_BITS_SET_LSEEK" ]
@@ -117,7 +121,9 @@ ohos_static_library("protobuf_lite_static") {
     "$protobuf_src_root",
   ]
   if (!is_mingw) {
-    if (current_toolchain != host_toolchain) {
+    # Here Cause Error, can't deal with dependency: "hilog:libhilog"
+    # Fix: use enable_hilog
+    if (enable_hilog && current_toolchain != host_toolchain) {
       # target build, not host build
       defines = [ "HAVE_HILOG" ]
       external_deps = [ "hilog:libhilog" ]
