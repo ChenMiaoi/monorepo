@@ -65,8 +65,8 @@ ohos_shared_library("protobuf_lite") {
   ]
   # Cause the hiloh:libhilog
   if (!is_mingw) {
-    if (current_toolchain != host_toolchain) {
-      # external_deps = [ "hilog:libhilog" ]
+    if (enable_hilog && current_toolchain != host_toolchain) {
+      external_deps = [ "hilog:libhilog" ]
     }
   } else {
     defines = [ "_FILE_OFFSET_BITS_SET_LSEEK" ]
