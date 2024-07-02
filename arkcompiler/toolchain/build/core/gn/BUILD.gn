@@ -53,7 +53,7 @@ group("ets_runtime") {
   ]
   # Maybe we need append `riscv-ohos` architecture in the future
   if ((target_os == "linux" && target_cpu == "x64") ||
-      (target_cpu == "arm64" && target_os == "ohos") {
+      (target_cpu == "arm64" && target_os == "ohos")) {
       # (target_cpu == "riscv64" && target_os == "ohos")) {
     deps += [
       "$js_root/ecmascript/compiler:ark_aot_compiler",
